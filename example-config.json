@@ -1,0 +1,30 @@
+{
+  "platform": "DobissLAN",
+  "name": "Dobiss LAN",
+  "host": "192.168.68.164",
+  "port": 10001,
+  "sendInitFrame": true,
+  "timeoutMs": 1500,
+  "pollIntervalSeconds": 0,
+  "startupPollDelaySeconds": 15,
+  "logStatusPolls": false,
+  "toggleOnStatusReadFailure": true,
+  "aggressiveStatusRetries": false,
+  "autoDiscover": true,
+  "discoveryModules": [1, 2, 3, 4, 5],
+  "lights": [
+    {
+      "name": "Test dimmer",
+      "type": "dimmer",
+      "module": 4,
+      "output": 2,
+      "initialBrightness": 100
+    },
+    {
+      "name": "Test switch",
+      "type": "switch",
+      "module": 3,
+      "output": 0
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "pluginAlias": "DobissLAN",
+  "pluginType": "platform",
+  "singular": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "default": "Dobiss LAN"
+      },
+      "host": {
+        "title": "DO5435 Host",
+        "type": "string",
+        "default": "192.168.68.164"
+      },
+      "port": {
+        "title": "DO5435 Port",
+        "type": "integer",
+        "default": 10001,
+        "minimum": 1,
+        "maximum": 65535
+      },
+      "sendInitFrame": {
+        "title": "Send Init Frame",
+        "type": "boolean",
+        "default": true
+      },
+      "timeoutMs": {
+        "title": "TCP Timeout",
+        "type": "integer",
+        "default": 1500,
+        "minimum": 250,
+        "maximum": 10000
+      },
+      "pollIntervalSeconds": {
+        "title": "Switch Poll Interval",
+        "type": "integer",
+        "default": 0,
+        "minimum": 0,
+        "maximum": 3600
+      },
+      "startupPollDelaySeconds": {
+        "title": "Startup Poll Delay",
+        "type": "integer",
+        "default": 15,
+        "minimum": 0,
+        "maximum": 120
+      },
+      "logStatusPolls": {
+        "title": "Log Status Polls",
+        "type": "boolean",
+        "default": false
+      },
+      "toggleOnStatusReadFailure": {
+        "title": "Toggle When Status Read Fails",
+        "type": "boolean",
+        "default": true
+      },
+      "aggressiveStatusRetries": {
+        "title": "Aggressive Status Retries",
+        "type": "boolean",
+        "default": false
+      },
+      "autoDiscover": {
+        "title": "Auto Discover Accessories",
+        "type": "boolean",
+        "default": false
+      },
+      "discoveryModules": {
+        "title": "Discovery Modules",
+        "type": "array",
+        "default": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "items": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 255
+        }
+      },
+      "lights": {
+        "title": "Lights",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Name",
+              "type": "string"
+            },
+            "module": {
+              "title": "Module",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 255
+            },
+            "output": {
+              "title": "Output",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 255
+            },
+            "type": {
+              "title": "Type",
+              "type": "string",
+              "default": "dimmer",
+              "oneOf": [
+                {
+                  "title": "Dimmer",
+                  "enum": [
+                    "dimmer"
+                  ]
+                },
+                {
+                  "title": "Switch",
+                  "enum": [
+                    "switch"
+                  ]
+                }
+              ]
+            },
+            "initialBrightness": {
+              "title": "Initial Brightness",
+              "type": "integer",
+              "default": 100,
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          "required": [
+            "name",
+            "module",
+            "output"
+          ]
+        }
+      }
+    },
+    "required": [
+      "host"
+    ]
+  }
+}

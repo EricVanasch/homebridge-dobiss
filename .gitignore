@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Logs and runtime output
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment and local configuration
+.env
+.env.*
+!.env.example
+config.json
+*.local.json
+
+# Rebuildable package/build artifacts
+dist/
+build/
+coverage/
+*.tgz
+
+# Captures and diagnostics
+*.pcap
+*.pcapng
+
+# macOS
+.DS_Store
+
+# Editor/project metadata
+.idea/
+.vscode/
