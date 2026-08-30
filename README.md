@@ -2,6 +2,8 @@
 
 Minimal Homebridge platform plugin for a Dobiss Ambiance Pro installation through the DO5435 LAN interface.
 
+For Synology deployment through the Homebridge UI or SSH, see [INSTALLATIE.md](INSTALLATIE.md).
+
 This version supports manually configured dimmer outputs and switch outputs.
 
 Dimmer outputs send the command pattern confirmed from local captures:
