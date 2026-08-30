@@ -23,6 +23,7 @@
     {
       "name": "Test switch",
       "type": "switch",
+      "homeKitType": "light",
       "module": 3,
       "output": 0
     }

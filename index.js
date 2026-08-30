@@ -6,6 +6,8 @@ const PLUGIN_NAME = "homebridge-dobiss-lan";
 const PLATFORM_NAME = "DobissLAN";
 const TYPE_DIMMER = "dimmer";
 const TYPE_SWITCH = "switch";
+const HOMEKIT_TYPE_LIGHT = "light";
+const HOMEKIT_TYPE_SWITCH = "switch";
 const MODULE_TYPE_SWITCH = 0x08;
 const MODULE_TYPE_DIMMER = 0x10;
 
@@ -77,11 +79,13 @@ class DobissLanPlatform {
       }
 
       const type = light.type === TYPE_SWITCH ? TYPE_SWITCH : TYPE_DIMMER;
+      const homeKitType = normalizeHomeKitType(type, light.homeKitType);
       configuredKeys.add(deviceKey(type, light.module, light.output));
       configuredOutputKeys.add(moduleOutputKey(light.module, light.output));
       devices.push({
         name: light.name,
         type,
+        homeKitType,
         module: light.module,
         output: light.output,
         initialBrightness: clampBrightness(light.initialBrightness || 100),
@@ -109,6 +113,7 @@ class DobissLanPlatform {
       accessory.context.device = {
         name: light.name,
         type: light.type,
+        homeKitType: light.homeKitType,
         module: light.module,
         output: light.output,
         initialBrightness: clampBrightness(light.initialBrightness || 100),
@@ -178,6 +183,7 @@ class DobissLanPlatform {
         discovered.push({
           name,
           type,
+          homeKitType: HOMEKIT_TYPE_LIGHT,
           module: moduleId,
           output,
           initialBrightness: 100,
@@ -571,7 +577,17 @@ class DobissSwitchAccessory {
       .setCharacteristic(Characteristic.Model, "Ambiance Pro DO5435")
       .setCharacteristic(Characteristic.SerialNumber, `module-${this.device.module}-output-${this.device.output}`);
 
-    this.service = accessory.getService(Service.Switch) || accessory.addService(Service.Switch);
+    const serviceType = this.device.homeKitType === HOMEKIT_TYPE_LIGHT
+      ? Service.Lightbulb
+      : Service.Switch;
+    const obsoleteServiceType = this.device.homeKitType === HOMEKIT_TYPE_LIGHT
+      ? Service.Switch
+      : Service.Lightbulb;
+    const obsoleteService = accessory.getService(obsoleteServiceType);
+    if (obsoleteService) {
+      accessory.removeService(obsoleteService);
+    }
+    this.service = accessory.getService(serviceType) || accessory.addService(serviceType);
     this.service.setCharacteristic(Characteristic.Name, this.device.name);
 
     this.service.getCharacteristic(Characteristic.On)
@@ -827,6 +843,13 @@ function deviceKey(type, moduleId, outputId) {
 
 function moduleOutputKey(moduleId, outputId) {
   return `${moduleId}:${outputId}`;
+}
+
+function normalizeHomeKitType(type, value) {
+  if (type === TYPE_DIMMER) {
+    return HOMEKIT_TYPE_LIGHT;
+  }
+  return value === HOMEKIT_TYPE_LIGHT ? HOMEKIT_TYPE_LIGHT : HOMEKIT_TYPE_SWITCH;
 }
 
 function isByte(value) {

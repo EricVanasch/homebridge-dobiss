@@ -1,6 +1,6 @@
 {
   "name": "homebridge-dobiss-lan",
-  "version": "0.5.12",
+  "version": "0.5.13",
   "description": "Homebridge platform plugin for Dobiss Ambiance Pro via DO5435 LAN interface",
   "main": "index.js",
   "engines": {

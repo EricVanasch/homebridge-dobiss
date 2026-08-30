@@ -125,6 +125,25 @@
                 }
               ]
             },
+            "homeKitType": {
+              "title": "HomeKit Presentation",
+              "type": "string",
+              "default": "light",
+              "oneOf": [
+                {
+                  "title": "Light",
+                  "enum": [
+                    "light"
+                  ]
+                },
+                {
+                  "title": "Switch",
+                  "enum": [
+                    "switch"
+                  ]
+                }
+              ]
+            },
             "initialBrightness": {
               "title": "Initial Brightness",
               "type": "integer",
