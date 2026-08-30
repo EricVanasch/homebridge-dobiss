@@ -105,7 +105,7 @@ Add a platform entry like this:
 - HomeKit read requests return the cached switch state immediately; Dobiss status reads happen in the background to avoid slow Homebridge read-handler warnings at startup.
 - When `autoDiscover` is enabled, configured `lights` are never overwritten. Discovery only adds missing `module/output` combinations.
 - Dobiss `type` remains the protocol type (`switch` or `dimmer`). Use `homeKitType` (`light` or `switch`) to choose how a regular switch output appears in HomeKit. Dimmers always appear as lights.
-- Auto-discovered outputs use `homeKitType: "light"`, so ordinary Dobiss light outputs appear as lamps in HomeKit. Existing manual switch entries without `homeKitType` keep their previous switch presentation.
+- Auto-discovered and manually configured outputs default to `homeKitType: "light"`, so ordinary Dobiss light outputs appear as lamps in HomeKit. Set `homeKitType: "switch"` explicitly only for an output that should remain a generic HomeKit switch.
 - Discovery reads Dobiss module info first. Module type `0x08` is treated as a switch module and `0x10` as a dimmer module.
 - `discoveryModules` controls which Dobiss module numbers are scanned. The default is `[1, 2, 3, 4, 5]`.
 - Dobiss TCP commands are serialized because the DO5435 can refuse parallel connections.

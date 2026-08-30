@@ -849,7 +849,7 @@ function normalizeHomeKitType(type, value) {
   if (type === TYPE_DIMMER) {
     return HOMEKIT_TYPE_LIGHT;
   }
-  return value === HOMEKIT_TYPE_LIGHT ? HOMEKIT_TYPE_LIGHT : HOMEKIT_TYPE_SWITCH;
+  return value === HOMEKIT_TYPE_SWITCH ? HOMEKIT_TYPE_SWITCH : HOMEKIT_TYPE_LIGHT;
 }
 
 function isByte(value) {

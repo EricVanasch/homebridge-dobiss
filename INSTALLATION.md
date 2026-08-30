@@ -1,6 +1,6 @@
 # Installing Homebridge Dobiss LAN on Synology
 
-This guide installs `homebridge-dobiss-lan` version `0.5.13` on a Synology NAS
+This guide installs `homebridge-dobiss-lan` version `0.5.14` on a Synology NAS
 running the official Homebridge package for DSM 7.
 
 ## Before you begin
@@ -18,7 +18,7 @@ running the official Homebridge package for DSM 7.
 
 Download the installation package:
 
-<https://github.com/EricVanasch/homebridge-dobiss/releases/download/v0.5.13/homebridge-dobiss-lan-0.5.13.tgz>
+<https://github.com/EricVanasch/homebridge-dobiss/releases/download/v0.5.14/homebridge-dobiss-lan-0.5.14.tgz>
 
 ## Method 1: Homebridge UI
 
@@ -28,16 +28,16 @@ Download the installation package:
 3. Download the package in the terminal:
 
 ```bash
-curl -L https://github.com/EricVanasch/homebridge-dobiss/releases/download/v0.5.13/homebridge-dobiss-lan-0.5.13.tgz -o /tmp/homebridge-dobiss-lan-0.5.13.tgz
+curl -L https://github.com/EricVanasch/homebridge-dobiss/releases/download/v0.5.14/homebridge-dobiss-lan-0.5.14.tgz -o /tmp/homebridge-dobiss-lan-0.5.14.tgz
 ```
 
 4. Install the local package:
 
 ```bash
-hb-service add /tmp/homebridge-dobiss-lan-0.5.13.tgz
+hb-service add /tmp/homebridge-dobiss-lan-0.5.14.tgz
 ```
 
-5. Open **Plugins** and verify that `homebridge-dobiss-lan` version `0.5.13`
+5. Open **Plugins** and verify that `homebridge-dobiss-lan` version `0.5.14`
    is shown.
 6. Open **Settings** and add the Dobiss configuration or verify the existing
    configuration.
@@ -64,13 +64,13 @@ ssh <DSM-USER>@<SYNOLOGY-IP-ADDRESS>
 2. Download the release to a temporary file:
 
 ```bash
-curl -L https://github.com/EricVanasch/homebridge-dobiss/releases/download/v0.5.13/homebridge-dobiss-lan-0.5.13.tgz -o /tmp/homebridge-dobiss-lan-0.5.13.tgz
+curl -L https://github.com/EricVanasch/homebridge-dobiss/releases/download/v0.5.14/homebridge-dobiss-lan-0.5.14.tgz -o /tmp/homebridge-dobiss-lan-0.5.14.tgz
 ```
 
 3. Install or update the plugin using the Homebridge service manager:
 
 ```bash
-sudo hb-service add /tmp/homebridge-dobiss-lan-0.5.13.tgz
+sudo hb-service add /tmp/homebridge-dobiss-lan-0.5.14.tgz
 ```
 
 4. Restart Homebridge:
@@ -125,7 +125,7 @@ the Dobiss protocol type while `homeKitType` controls its HomeKit presentation:
 
 After restarting, verify that:
 
-- **Plugins** shows `homebridge-dobiss-lan` version `0.5.13`;
+- **Plugins** shows `homebridge-dobiss-lan` version `0.5.14`;
 - the log does not contain repeated TCP timeouts to the DO5435;
 - dimmers can be switched on and off and set to a brightness level;
 - regular lighting outputs appear as lights in HomeKit;
@@ -166,7 +166,7 @@ Restore the Homebridge backup created earlier if necessary.
 
 ### HomeKit still shows a generic switch
 
-- Verify that version `0.5.13` is active.
+- Verify that version `0.5.14` is active.
 - For manually configured regular outputs, verify `"type": "switch"` and
   `"homeKitType": "light"`.
 - Restart the main bridge or child bridge after every configuration change.
@@ -175,4 +175,3 @@ Restore the Homebridge backup created earlier if necessary.
 
 - <https://github.com/homebridge/homebridge/wiki/Install-Homebridge-on-Synology-DSM>
 - <https://github.com/homebridge/homebridge-syno-spk>
-
